@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoLocationOutline, IoPeopleOutline } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import axios from "axios"; // Import axios
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const SearchPalette = () => {
   const navigate = useNavigate();
-  const [isdistance, setIsDistance] = useState("");
+  const [isDistance, setIsDistance] = useState("");
   const [isMaxPeople, setIsMaxPeople] = useState("");
 
   const locationRef = useRef("");
@@ -20,20 +20,17 @@ const SearchPalette = () => {
     const maxGroupSize = maxGroupSizeRef.current.value;
 
     if (location === "" || distance === "" || maxGroupSize === "") {
-      return alert("All field required!");
+      return alert("All fields required!");
     }
 
     try {
-      const res = await axios.get(
-        `${BASE_URL}/tours/search/get`,
-        {
-          params: {
-            city: location,
-            distance: distance,
-            maxGroupSize: maxGroupSize
-          }
-        }
-      );
+      const res = await axios.get(`${BASE_URL}/tours/search/get`, {
+        params: {
+          city: location,
+          distance: distance,
+          maxGroupSize: maxGroupSize,
+        },
+      });
 
       navigate(
         `/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
@@ -55,46 +52,48 @@ const SearchPalette = () => {
   const handleChangeDis = (event) => {
     const inputValue = event.target.value;
     if (inputValue >= 0 || inputValue === "") {
-        setIsDistance(inputValue);
+      setIsDistance(inputValue);
     }
   };
 
+
+
   return (
-    <div className="w-[88%] m-auto flex items-center justify-center flex-col">
-      <div className="flex items-center justify-evenly rounded-2xl px-4 py-2 shadow-lg border-[0.1px] mt-12">
-        <div className="flex items-center justify-center flex-col">
-          <p className="text-xs font-semibold">Location</p>
+    <div className="w-full md:max-w-screen-sm mx-auto px-4">
+      <div className="flex flex-col md:flex-row items-center justify-center md:justify-between rounded-2xl p-2 shadow-lg border border-gray-200 my-12">
+        <div className="mb-4 md:mb-0">
+          <p className="text-xs text-center font-semibold">Location</p>
           <input
-            className="text-xs outline-none text-center"
+            className="text-xs outline-none text-center w-full"
             placeholder="Where are you going?"
             ref={locationRef}
           />
         </div>
-        <IoLocationOutline />
-        <div className="flex items-center justify-center flex-col">
-          <p className="text-xs font-semibold">Distance</p>
+        <IoLocationOutline className="mb-4 md:mb-0" />
+        <div className="mb-4 md:mb-0">
+          <p className="text-xs text-center font-semibold md:mr-4">Distance</p>
           <input
             type="number"
-            value={isdistance || 0}
+            value={isDistance || 0}
             onChange={handleChangeDis}
-            className="text-xs outline-none text-center"
-            placeholder="Distance k/m"
+            className="text-xs outline-none text-center w-full"
+            placeholder="Distance (km)"
             ref={distanceRef}
           />
         </div>
-        <IoPeopleOutline />
-        <div className="flex items-center justify-center flex-col">
-          <p className="text-xs font-semibold">Max People</p>
+        <IoPeopleOutline className="mb-4 md:mb-0" />
+        <div className="mb-4 md:mb-0">
+          <p className="text-xs font-semibold text-center md:mr-4">Max People</p>
           <input
             type="number"
             value={isMaxPeople || 0}
             onChange={handleChangeMax}
-            className="text-xs outline-none text-center"
+            className="text-xs outline-none text-center w-full"
             ref={maxGroupSizeRef}
           />
         </div>
         <button
-          className="flex items-center justify-center flex-col bg-teal-400 p-2 rounded-xl"
+          className="bg-teal-400 p-2 rounded-xl w-full md:w-auto flex items-center justify-center md:justify-start"
           onClick={searchHandler}
         >
           <IoIosSearch />

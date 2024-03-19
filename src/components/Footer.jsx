@@ -9,7 +9,7 @@ import { CiFacebook } from "react-icons/ci"
 
 const Footer = () => {
 
-    const copyright = "Copyright 2024. All Rights Reserved by Trek Topia."
+    const copyright = "2024 TrekTopia. All rights reserved"
 
     return (
         <section className="relative overflow-hidden py-10 flex items-center justify-center flex-col mb-8">
@@ -21,7 +21,7 @@ const Footer = () => {
                                 <img className="h-14" src={LOGO} alt="" />
                             </div>
                             <div>
-                                <p className="mb-4  text-base">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam cupiditate fuga impedit</p>
+                                <p className="mb-4  text-base">Explore the world with us and embark on unforgettable journeys.</p>
                                 <span className="flex items-center justify-start gap-4">
                                     <AiOutlineYoutube />
                                     <FaGithub />
