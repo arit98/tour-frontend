@@ -53,7 +53,7 @@ const Booking = ({ tour, avgRating, totalRating }) => {
   };
 
   return (
-    <div className="w-1/2 h-fit border-2 rounded-lg">
+    <div className="md:w-1/2 w-1/1 md:ml-0 ml-4 h-fit border-2 rounded-lg">
       <form onSubmit={submitHandlerBookNow}>
         <div className="px-4 py-10 w-full">
           <span className="flex items-center justify-between">

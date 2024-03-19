@@ -15,7 +15,7 @@ const FeaturedContent = ({ title, btn }) => {
       <div className="flex items-start justify-center flex-col my-4 w-[87%] m-auto select-none">
         <p className="dancing-script px-2 bg-teal-400 rounded-xl">{btn}</p>
         <p className="text-2xl">{title}</p>
-        <div className="flex items-start justify-center flex-wrap gap-2">
+        <div className="flex items-start justify-center w-full flex-wrap gap-2">
           {loading ? (
             Array.from({ length: 8 }).map((_, index) => (
               <div key={index}>

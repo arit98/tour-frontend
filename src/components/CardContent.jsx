@@ -9,7 +9,7 @@ const CardContent = ({ tour }) => {
 
   const { totalRating, avgRating } = calculateAvgRating(reviews);
   return (
-    <div className="w-[255px] h-auto pb-2 rounded-md border mt-8">
+    <div className="md:w-[255px] w-full h-auto pb-2 rounded-md border mt-8">
       <div className="relative">
         {" "}
         <img

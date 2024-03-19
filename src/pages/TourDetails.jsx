@@ -143,7 +143,7 @@ const TourDetails = () => {
 
   return (
     <div className="flex items-center justify-center flex-col gap-4">
-      <div className="mt-20 flex justify-between px-16 py-4 gap-8">
+      <div className="mt-20 flex md:flex-row flex-col justify-between px-16 py-4 gap-8">
         <div className="flex items-center justify-center w-full">
           <div className="flex items-start justify-center flex-col">
             <img className="rounded-lg" src={photo} alt="" srcset="" />
