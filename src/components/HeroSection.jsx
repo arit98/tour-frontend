@@ -3,7 +3,7 @@ import SearchPalette from './SearchPalette'
 
 const HeroSection = () => {
     return (
-        <section className='mt-20 overflow-x-hidden select-none'>
+        <section className='mt-20 overflow-x-hidden select-none md:w-full w-80 m-auto'>
             <div className="px-2 lg:flex lg:flex-row lg:items-center">
                 <div className="w-full lg:w-1/2">
                     <div className="my-10 lg:my-0 lg:px-10">
@@ -17,8 +17,8 @@ const HeroSection = () => {
                         <SearchPalette />
                     </div>
                 </div>
-                <div className="w-full lg:w-1/2 flex items-center justify-center gap-4">
-                    <div className='pt-[2rem]'>
+                <div className="w-full lg:w-1/2 flex md:flex-row flex-col items-center justify-center gap-4">
+                    <div className='md:pt-[2rem]'>
                         <iframe
                             className='rounded-xl'
                             width="220"
@@ -29,7 +29,7 @@ const HeroSection = () => {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         ></iframe>
                     </div>
-                    <div className='pt-[2rem] mt-12'>
+                    <div className='md:pt-[2rem] md:mt-12'>
                         <iframe
                             className='rounded-xl'
                             width="220"
@@ -40,7 +40,7 @@ const HeroSection = () => {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         ></iframe>
                     </div>
-                    <div className='pt-[2rem] mt-24'>
+                    <div className='md:pt-[2rem] md:mt-24'>
                         <iframe
                             className='rounded-xl'
                             width="220"

@@ -3,7 +3,7 @@ import Img from "../assets/images/male-tourist.png"
 
 const NewsLetter = ({ title, ExperienceImg }) => {
     return (
-        <div className='w-full bg-[#c1dcee]'>
+        <div className='w-full m-auto bg-[#c1dcee]'>
             <div className='flex items-center justify-between w-[73%] m-auto select-none'>
             <div className='flex items-start justify-center flex-col'>
                 <p className='mt-2 text-3xl w-full font-semibold'>{title}</p>
