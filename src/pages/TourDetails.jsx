@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import calculateAvgRating from "../utils/avgRating";
 import { CiStar } from "react-icons/ci";
 import { MdPeople } from "react-icons/md";
@@ -17,14 +17,14 @@ import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import Booking from "../components/Booking";
 
 const TourDetails = () => {
   const { id } = useParams();
   const reviewMsgRef = useRef("");
   const [tourRating, setTourRating] = useState(null);
   const { data: tour, loading } = useFetch(`${BASE_URL}/tours/${id}`);
-  const { user, dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const { photo, title, address, desc, price, city, maxGroupSize, reviews } =
     tour;
   const { totalRating, avgRating } = calculateAvgRating(reviews);
@@ -36,7 +36,7 @@ const TourDetails = () => {
     const reviewText = reviewMsgRef.current.value;
 
     if (tourRating < 1) {
-      toast.warn("Please select any rating", { position: "top-center" });
+      toast.warn("Select any rating", { position: "top-center" });
     }
 
     try {
@@ -58,30 +58,6 @@ const TourDetails = () => {
     } catch (error) {
       console.log("albal");
     }
-  };
-
-  const [credentials, setCredentials] = useState({
-    userId: "01",
-    userEmail: "example@gmail.com",
-    fullName: "",
-    phone: "",
-    guestSize: 1,
-    bookAt: "",
-  });
-
-  const handleChange = (e) => {
-    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
-
-  const serviceFee = 10;
-  const totalAmount =
-    Number(price) * Number(credentials.guestSize) + Number(serviceFee);
-
-  const submitHandlerBookNow = (e) => {
-    e.preventDefault();
-
-    console.log(credentials);
-    navigate("/thank-you");
   };
 
   useEffect(() => {
@@ -280,7 +256,7 @@ const TourDetails = () => {
                         <p className="font-bold">{review.username}</p>
                         <span className="flex items-center justify-between w-full">
                           <p className="font-light text-sm">
-                            {review.createdAt}
+                            {new Date(review.createdAt).toLocaleDateString("en-US", options)}
                           </p>{" "}
                           <span className="flex items-center gap-[.5px] text-amber-400">
                             {review.rating}
@@ -297,84 +273,7 @@ const TourDetails = () => {
           </div>
         </div>
 
-        <div className="w-1/2 h-fit border-2 rounded-lg">
-          <form onSubmit={submitHandlerBookNow}>
-            <div className="px-4 py-10 w-full">
-              <span className="flex items-center justify-between">
-                <p className="">
-                  <span className="text-2xl font-bold">${price}</span>/per
-                  person
-                </p>
-                <span className="flex items-center gap-1">
-                  <FaStar className="text-amber-400" />
-                  <span className="flex items-center justify-center gap-1">
-                    {avgRating === 0 ? null : avgRating}
-                    {totalRating === 0 ? (
-                      "Not Rated"
-                    ) : (
-                      <span>({reviews?.length})</span>
-                    )}
-                  </span>
-                </span>
-              </span>
-              <hr className="mt-6" />
-              <div className="w-full px-8 mt-4">
-                <p className="text-xl font-semibold">Information</p>
-                <div className="px-4 py-6 flex items-center justify-around flex-col gap-4 border-2 rounded-lg mt-2">
-                  <input
-                    onChange={handleChange}
-                    className="w-full px-2 outline-none border-b-2"
-                    type="text"
-                    placeholder="Full Name"
-                    id="fullName"
-                  />
-                  <input
-                    onChange={handleChange}
-                    className="w-full px-2 outline-none border-b-2"
-                    type="number"
-                    placeholder="Phone"
-                    id="phone"
-                  />
-                  <span className="flex items-center gap-2">
-                    <input
-                      onChange={handleChange}
-                      className="w-full px-2 outline-none border-b-2"
-                      type="date"
-                      id="bookAt"
-                    />
-                    <input
-                      onChange={handleChange}
-                      className="w-1/2 px-2 outline-none border-b-2"
-                      type="number"
-                      placeholder="Guest"
-                      id="guestSize"
-                    />
-                  </span>
-                </div>
-              </div>
-
-              <div className="px-3 mt-8 flex items-stretch justify-center flex-col gap-4">
-                <span className="flex items-center justify-between">
-                  <p>$99 x 1 person</p>
-                  <p>$99</p>
-                </span>
-                <span className="flex items-center justify-between">
-                  <p>Service charge</p>
-                  <p>${serviceFee}</p>
-                </span>
-                <span className="flex items-center justify-between font-bold">
-                  <p>Total</p>
-                  <p>${totalAmount}</p>
-                </span>
-                <input
-                  type="submit"
-                  className="w-full bg-teal-400 rounded-full py-2 mt-4 text-white cursor-pointer outline-none"
-                  value="Book Now"
-                />
-              </div>
-            </div>
-          </form>
-        </div>
+        <Booking tour={tour} avgRating={avgRating} totalRating={totalRating} />
       </div>
       <NewsLetter />
     </div>

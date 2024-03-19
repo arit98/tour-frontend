@@ -1,5 +1,5 @@
 import React from "react";
-import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import calculateAvgRating from "../utils/avgRating";
@@ -29,7 +29,7 @@ const CardContent = ({ tour }) => {
             {city}
           </span>
           <span className="flex items-center text-sm gap-1">
-            <CiStar />
+            <FaStar className="text-amber-300" />
             {avgRating === 0 ? null : avgRating}
             {totalRating === 0 ? "Not Rated" : <span>({reviews.length})</span>}
           </span>
