@@ -21,10 +21,10 @@ const ToursPage = () => {
     window.scrollTo(0,0)
   }, [page, tourCount])
   return (
-    <div className='w-full flex justify-center items-start flex-col'>
+    <div className='w-[87%] m-auto flex justify-center items-start flex-col'>
       <Banner title="All Tours" />
       <SearchPalette />
-      <div className="flex items-start justify-center flex-wrap gap-2">
+      <div className="flex w-[87%] m-auto items-start justify-center flex-wrap gap-2">
           {loading ? (
             Array.from({ length: 7 }).map((_, index) => (
               <div key={index}>

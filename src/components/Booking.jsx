@@ -38,12 +38,14 @@ const Booking = ({ tour, avgRating, totalRating }) => {
 
       const res = await axios.post(`${BASE_URL}/booking`, booking);
 
-      console.log(res);
-
       if (!res.statusText == "Ok") {
+        toast.error("Check your internet connection")
+      }else{
+        navigate("/thank-you");
       }
-    } catch (error) {}
-    navigate("/thank-you");
+    } catch (error) {
+        console.log(error)
+    }
   };
 
   const handleChange = (e) => {
