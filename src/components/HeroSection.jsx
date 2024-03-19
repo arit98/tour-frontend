@@ -23,7 +23,7 @@ const HeroSection = () => {
                             className='rounded-xl'
                             width="220"
                             height="426"
-                            src="https://www.youtube.com/embed/UklwTkNkr8c?modestbranding=1"
+                            src="https://www.youtube.com/embed/vScElcx_LvU?modestbranding=1"
                             title="YouTube Shorts video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -34,7 +34,7 @@ const HeroSection = () => {
                             className='rounded-xl'
                             width="220"
                             height="426"
-                            src="https://www.youtube.com/embed/Dm0lNTu85nU?modestbranding=1"
+                            src="https://www.youtube.com/embed/SXAVHz9Vi8A?modestbranding=1"
                             title="YouTube Shorts video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -45,7 +45,7 @@ const HeroSection = () => {
                             className='rounded-xl'
                             width="220"
                             height="426"
-                            src="https://www.youtube.com/embed/pIj9XzDlJHU?modestbranding=1"
+                            src="https://www.youtube.com/embed/d4epkF7ngak?modestbranding=1"
                             title="YouTube Shorts video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
