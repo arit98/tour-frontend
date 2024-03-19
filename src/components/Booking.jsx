@@ -13,7 +13,7 @@ const Booking = ({ tour, avgRating, totalRating }) => {
 
   const { user } = useContext(AuthContext);
 
-  const serviceFee = 10;
+  const serviceFee = 195;
   
   const [booking, setBooking] = useState({
       userId: user && user._id,
@@ -58,7 +58,7 @@ const Booking = ({ tour, avgRating, totalRating }) => {
         <div className="px-4 py-10 w-full">
           <span className="flex items-center justify-between">
             <p className="">
-              <span className="text-2xl font-bold">${price}</span>/per person
+              <span className="text-2xl font-bold">₹{price}</span>/per person
             </p>
             <span className="flex items-center gap-1">
               <FaStar className="text-amber-400" />
@@ -110,16 +110,16 @@ const Booking = ({ tour, avgRating, totalRating }) => {
 
           <div className="px-3 mt-8 flex items-stretch justify-center flex-col gap-4">
             <span className="flex items-center justify-between">
-              <p>$99 x 1 person</p>
-              <p>$99</p>
+              <p>₹{price} x 1 person</p>
+              <p>₹{price}</p>
             </span>
             <span className="flex items-center justify-between">
               <p>Service charge</p>
-              <p>${serviceFee}</p>
+              <p>₹{serviceFee}</p>
             </span>
             <span className="flex items-center justify-between font-bold">
               <p>Total</p>
-              <p>${totalAmount}</p>
+              <p>₹{totalAmount}</p>
             </span>
             <input
               type="submit"

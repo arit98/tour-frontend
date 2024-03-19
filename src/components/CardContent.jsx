@@ -12,15 +12,19 @@ const CardContent = ({ tour }) => {
     <div className="w-[255px] h-auto pb-2 rounded-md border mt-8">
       <div className="relative">
         {" "}
-          <img
-            draggable="false"
-            src={tour.photo}
-            alt="Location"
-            className="h-auto w-full rounded-md object-cover"
-          />
-        <p className="absolute bottom-0 right-0 w-max h-max z-10 bg-[#212121] p-2 text-xs rounded-sm text-white bg-opacity-80 cursor-default">
-          {featured === true ? "Featured" : ""}
-        </p>
+        <img
+          draggable="false"
+          src={tour.photo}
+          alt="Location"
+          className="h-auto w-full rounded-md object-cover"
+        />
+        {featured === true ? (
+          <p className="absolute bottom-0 right-0 w-max h-max z-10 bg-[#212121] p-2 text-xs rounded-sm text-white bg-opacity-80 cursor-default">
+            Featured
+          </p>
+        ) : (
+          ""
+        )}
       </div>
       <div className="p-4">
         <div className="flex items-center justify-between text-sm">
@@ -39,7 +43,7 @@ const CardContent = ({ tour }) => {
         </h1>
         <div className="flex items-center justify-between">
           <p className="mt-3 text-md font-medium text-gray-600">
-            <span className="text-md text-teal-400 font-bold">${price}</span>{" "}
+            <span className="text-md text-teal-400 font-bold">₹{price}</span>{" "}
             per person
           </p>
           <button
