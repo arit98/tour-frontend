@@ -41,8 +41,8 @@ const Login = ({ setIsModalLogin }) => {
     }
   };
   return (
-    <div className="flex justify-center items-center overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-md">
-      <div className="relative w-auto my-6 mx-auto max-w-3xl">
+    <div className="flex justify-center h-screen items-center overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-md">
+      <div className="relative md:w-auto w-[300px] my-6 mx-auto max-w-3xl">
         <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
           <section className="rounded-md bg-black/70 p-2">
             <div className="flex items-center justify-center bg-white px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
