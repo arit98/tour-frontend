@@ -9,7 +9,7 @@ import NewsLetter from '../components/NewsLetter'
 
 const HomePage = () => {
     return (
-        <>
+        <div className='w-full'>
             <HeroSection />
             <div className='h-12'></div>
             <ServiceList />
@@ -23,7 +23,7 @@ const HomePage = () => {
             <TestimoniSection title="What our fan says about us" btn="Fans love" />
             <div className='h-12'></div>
             <NewsLetter title="Subscribe now to get useful travelling information" btn="Experience" />
-        </>
+        </div>
     )
 }
 

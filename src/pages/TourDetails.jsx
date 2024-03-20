@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import calculateAvgRating from "../utils/avgRating";
-import { CiStar } from "react-icons/ci";
 import { MdPeople } from "react-icons/md";
 import {
-  FaDollarSign,
   FaLocationDot,
   FaMapLocationDot,
   FaStar,
@@ -51,12 +49,12 @@ const TourDetails = () => {
       };
 
       const res = await axios.post(`${BASE_URL}/review/${id}`, reviewObj);
-      if (!res.statusText == "Ok") {
+      if (!res.statusText === "Ok") {
         toast.error(`Review not submitted`, { position: "top-center" });
       }
       toast.info(`${reviewText} ${tourRating}`, { position: "top-center" });
     } catch (error) {
-      console.log("albal");
+      toast.error(`Review not submitted`, { position: "top-center" });
     }
   };
 
@@ -146,7 +144,7 @@ const TourDetails = () => {
       <div className="mt-20 flex md:flex-row flex-col justify-between px-16 py-4 gap-8">
         <div className="flex items-center justify-center w-full">
           <div className="flex items-start justify-center flex-col">
-            <img className="rounded-lg" src={photo} alt="" srcset="" />
+            <img draggable="false" className="rounded-lg" src={photo} alt="" srcset="" />
 
             <div className="flex items-start justify-start w-full flex-col border-2 rounded-lg px-12 py-8 mt-8 text-sm">
               <h2 className="text-xl font-semibold">{title}</h2>
@@ -154,7 +152,7 @@ const TourDetails = () => {
               <div className="flex items-center gap-5 flex-col">
                 <span className="flex items-center justify-between w-full gap-12 mt-2">
                   <span className="flex items-center justify-center gap-1">
-                    <CiStar />
+                    <FaStar className="text-amber-300" />
                     {avgRating === 0 ? null : avgRating}
                     {totalRating === 0 ? (
                       "Not Rated"
@@ -174,7 +172,7 @@ const TourDetails = () => {
                   {city}
                 </span>
                 <span className="flex items-center justify-center">
-                  <FaDollarSign />
+                  ₹
                   {price} per person
                 </span>
                 <span className="flex items-center justify-center gap-1 mt-2">
@@ -189,7 +187,7 @@ const TourDetails = () => {
               </span>
             </div>
 
-            <div className="mt-8 border-2 w-full px-12 py-8 rounded-lg">
+            <div className="mt-8 border-2 w-full px-12 md:py-8 py-16 rounded-lg">
               <h4 className="text-xl font-semibold mb-2">
                 Reviews ({tour.reviews ? reviews.length : 0}) reviews
               </h4>
@@ -250,7 +248,7 @@ const TourDetails = () => {
                       key={review.id}
                     >
                       <div className="w-12 h-12">
-                        <img src={ImgAvatar} alt="" />
+                        <img draggable="false" src={ImgAvatar} alt="" />
                       </div>
                       <span className="flex items-start justify-center flex-col w-full">
                         <p className="font-bold">{review.username}</p>

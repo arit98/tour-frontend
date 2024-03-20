@@ -18,7 +18,7 @@ const Footer = () => {
                     <div className="w-full p-6 md:w-1/2 lg:w-5/12">
                         <div className="flex h-full flex-col justify-center">
                             <div className="mb-4 inline-flex items-center">
-                                <img className="h-14" src={LOGO} alt="" />
+                                <img draggable="false" className="h-14" src={LOGO} alt="" />
                             </div>
                             <div>
                                 <p className="mb-4  text-base">Explore the world with us and embark on unforgettable journeys.</p>

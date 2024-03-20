@@ -17,7 +17,7 @@ const FeaturedContent = ({ title, btn }) => {
         <p className="text-2xl">{title}</p>
         <div className="flex items-start justify-center w-full flex-wrap gap-2">
           {loading ? (
-            Array.from({ length: 8 }).map((_, index) => (
+            Array.from({ length: 7 }).map((_, index) => (
               <div key={index}>
                 <CardContentSkeleton />
               </div>

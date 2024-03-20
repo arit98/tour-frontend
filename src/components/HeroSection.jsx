@@ -19,15 +19,15 @@ const HeroSection = () => {
                 </div>
                 <div className="w-full lg:w-1/2 flex md:flex-row flex-col items-center justify-center gap-4">
                     <div className='md:pt-[2rem]'>
-                        <iframe
+                    <iframe
                             className='rounded-xl'
                             width="220"
                             height="426"
-                            src="https://www.youtube.com/embed/vScElcx_LvU?modestbranding=1"
+                            src="https://www.youtube.com/embed/lJFPDZ-UYN0?modestbranding=1"
                             title="YouTube Shorts video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        ></iframe>
+                        ></iframe> 
                     </div>
                     <div className='md:pt-[2rem] md:mt-12'>
                         <iframe

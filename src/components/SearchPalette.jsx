@@ -56,8 +56,6 @@ const SearchPalette = () => {
     }
   };
 
-
-
   return (
     <div className="w-full md:max-w-screen-sm mx-auto px-4">
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-between rounded-2xl p-2 shadow-lg border border-gray-200 my-12">

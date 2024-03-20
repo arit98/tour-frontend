@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Banner from "../components/Banner";
 import { useLocation } from "react-router-dom";
 import NewsLetter from "../components/NewsLetter";
@@ -8,8 +8,12 @@ import SearchPalette from "../components/SearchPalette";
 const TourSearchList = () => {
   const location = useLocation();
 
-  const [data] = useState(location.state);
-  
+  const [data, setData] = useState(location.state || []);
+
+  useEffect(() => {
+    setData(location.state || []);
+  }, [location.state]);
+
   return (
     <>
       <Banner title="Tour Search Result" />
@@ -21,10 +25,8 @@ const TourSearchList = () => {
           </div>
         ) : (
           data?.map((tour) => (
-            <div className="flex items-start justify-center flex-wrap gap-2">
-                <div key={tour._id}>
-                  <CardContent tour={tour} />
-                </div>
+            <div className="flex items-start justify-center flex-wrap gap-2" key={tour._id}>
+              <CardContent tour={tour} />
             </div>
           ))
         )}

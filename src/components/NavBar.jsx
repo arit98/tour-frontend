@@ -59,7 +59,7 @@ const NavBar = () => {
       <div className="mx-auto md:flex hidden max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
-            <img onClick={navigateUrl} className='h-14 cursor-pointer' src={LOGO} alt="LOGO" />
+            <img draggable="false" onClick={navigateUrl} className='h-14 cursor-pointer' src={LOGO} alt="LOGO" />
           </span>
           {/* <span className="dancing-script-bold">Trek Topia</span> */}
         </div>

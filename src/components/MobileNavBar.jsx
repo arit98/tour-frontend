@@ -58,7 +58,7 @@ const MobileNavBar = () => {
     <div className="w-full shadow-md">
       <div className="mx-auto flex justify-between items-center px-4 py-2 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-2">
-          <img
+          <img draggable="false"
             onClick={navigateUrl}
             className="h-14 cursor-pointer"
             src={LOGO}
@@ -91,7 +91,7 @@ const MobileNavBar = () => {
               <div className="pt-5 pb-6 px-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <img className="h-10 w-auto" src={LOGO} alt="Logo" />
+                    <img draggable="false" className="h-10 w-auto" src={LOGO} alt="Logo" />
                   </div>
                   <div className="-mr-2">
                     <button

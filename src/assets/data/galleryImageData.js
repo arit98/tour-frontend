@@ -14,5 +14,4 @@ export const galleryImages = [
     galleryImg05,
     galleryImg06,
     galleryImg07,
-    
 ]
