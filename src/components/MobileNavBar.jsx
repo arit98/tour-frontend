@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Register from "../modals/Register";
 import Login from "../modals/Login";
 import LOGO from "../assets/images/logo.png";
-import { AuthContext } from "../context/AuthContext";
+import { useStateValue } from "../context/StateContext";
 
 const menuItems = [
   {
@@ -27,7 +27,7 @@ const MobileNavBar = () => {
   const [isModalRegister, setIsModalRegister] = useState(false);
   const [isModalLogin, setIsModalLogin] = useState(false);
 
-  const { user, dispatch } = useContext(AuthContext);
+  const { user, dispatch } = useStateValue();
   const navigate = useNavigate();
 
   const navigateUrl = () => {
@@ -55,10 +55,11 @@ const MobileNavBar = () => {
     navigate("/");
   };
   return (
-    <div className="w-full shadow-md">
+    <div className="w-full shadow-md z-50">
       <div className="mx-auto flex justify-between items-center px-4 py-2 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-2">
-          <img draggable="false"
+          <img
+            draggable="false"
             onClick={navigateUrl}
             className="h-14 cursor-pointer"
             src={LOGO}
@@ -91,7 +92,12 @@ const MobileNavBar = () => {
               <div className="pt-5 pb-6 px-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <img draggable="false" className="h-10 w-auto" src={LOGO} alt="Logo" />
+                    <img
+                      draggable="false"
+                      className="h-10 w-auto"
+                      src={LOGO}
+                      alt="Logo"
+                    />
                   </div>
                   <div className="-mr-2">
                     <button
@@ -121,26 +127,40 @@ const MobileNavBar = () => {
                       </NavLink>
                     ))}
                   </nav>
-                  <span className="flex items-center flex-col justify-between mt-4 gap-4">
-                    <button
-                      onClick={toggleModalLogin}
-                      className="w-full rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                    >
-                      Login
-                    </button>
-                    {isModalLogin && (
-                      <Login setIsModalLogin={setIsModalLogin} />
-                    )}
-                    <button
-                      onClick={toggleModalRegister}
-                      className="w-full rounded-md border bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                    >
-                      Register
-                    </button>
-                    {isModalRegister && (
-                      <Register setIsModalRegister={setIsModalRegister} />
-                    )}
-                  </span>
+                  {!user ? (
+                    <span className="flex items-center flex-col justify-between mt-4 gap-4">
+                      <button
+                        onClick={toggleModalLogin}
+                        className="w-full rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                      >
+                        Login
+                      </button>
+                      {isModalLogin && (
+                        <Login setIsModalLogin={setIsModalLogin} />
+                      )}
+                      <button
+                        onClick={toggleModalRegister}
+                        className="w-full rounded-md border bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                      >
+                        Register
+                      </button>
+                      {isModalRegister && (
+                        <Register setIsModalRegister={setIsModalRegister} />
+                      )}
+                    </span>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center gap-4 w-full mt-4">
+                      <p className="text-black text-xl text-center font-semibold w-full border border-black py-1 rounded-md">
+                        {user?.data?.username}
+                      </p>
+                      <button
+                        className="rounded-md border border-black bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black w-full"
+                        onClick={logout}
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

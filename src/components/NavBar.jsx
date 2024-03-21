@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react'
-import { Menu, X, ChevronRight } from 'lucide-react'
+import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import Register from '../modals/Register'
 import Login from '../modals/Login'
 import LOGO from "../assets/images/logo.png"
-import { AuthContext } from '../context/AuthContext'
+import { useStateValue } from '../context/StateContext'
 const menuItems = [
   {
     name: 'Home',
@@ -26,7 +25,7 @@ const NavBar = () => {
   const [isModalRegister, setIsModalRegister] = useState(false)
   const [isModalLogin, setIsModalLogin] = useState(false)
 
-  const { user, dispatch } = useContext(AuthContext)
+  const { user, dispatch } = useStateValue()
   const navigate = useNavigate();
 
   const navigateUrl = () => {

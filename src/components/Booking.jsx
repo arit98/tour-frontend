@@ -1,17 +1,17 @@
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { BASE_URL } from "../utils/config";
 import { FaStar } from "react-icons/fa6";
+import {useStateValue} from "../context/StateContext"
 
 const Booking = ({ tour, avgRating, totalRating }) => {
   const { title, price, reviews } = tour;
 
   const navigate = useNavigate();
 
-  const { user } = useContext(AuthContext);
+  const { user } = useStateValue();
 
   const serviceFee = 195;
   

@@ -1,10 +1,10 @@
 import { ArrowRight } from "lucide-react";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import LOGO from "../assets/images/logo.png";
 import axios from "axios";
 import { BASE_URL } from "../utils/config";
 import { toast } from "react-toastify";
-import { AuthContext } from '../context/AuthContext'
+import { useStateValue } from "../context/StateContext";
 
 const Login = ({ setIsModalLogin }) => {
   const [credentials, setCredentials] = useState({
@@ -12,7 +12,7 @@ const Login = ({ setIsModalLogin }) => {
     password: undefined,
   });
 
-  const {dispatch} = useContext(AuthContext)
+  const {dispatch} = useStateValue()
 
 
   const handleChange = (e) => {

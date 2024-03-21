@@ -13,16 +13,16 @@ import { toast } from "react-toastify";
 import NewsLetter from "../components/NewsLetter";
 import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
-import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import Booking from "../components/Booking";
+import { useStateValue } from "../context/StateContext";
 
 const TourDetails = () => {
   const { id } = useParams();
   const reviewMsgRef = useRef("");
   const [tourRating, setTourRating] = useState(null);
   const { data: tour, loading } = useFetch(`${BASE_URL}/tours/${id}`);
-  const { user } = useContext(AuthContext);
+  const { user } = useStateValue();
   const { photo, title, address, desc, price, city, maxGroupSize, reviews } =
     tour;
   const { totalRating, avgRating } = calculateAvgRating(reviews);

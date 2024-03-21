@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import LOGO from "../assets/images/logo.png";
 import { BASE_URL } from "../utils/config";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { AuthContext } from "../context/AuthContext";
+import { useStateValue } from "../context/StateContext";
 
 const Register = ({ setIsModalRegister }) => {
   const [credentials, setCredentials] = useState({
@@ -13,7 +13,7 @@ const Register = ({ setIsModalRegister }) => {
     password: undefined,
   });
 
-  const {dispatch} = useContext(AuthContext)
+  const {dispatch} = useStateValue();
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
