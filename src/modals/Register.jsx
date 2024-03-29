@@ -1,26 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import LOGO from "../assets/images/logo.png";
 import { BASE_URL } from "../utils/config";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useStateValue } from "../context/StateContext";
+import { RxCross2 } from "react-icons/rx"
 
-const Register = ({ setIsModalRegister }) => {
+const Register = ({ isModalRegister, setIsModalRegister }) => {
   const [credentials, setCredentials] = useState({
     username: undefined,
     email: undefined,
     password: undefined,
   });
 
-  const {dispatch} = useStateValue();
+  const { dispatch } = useStateValue();
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
+  const handleKeyUp = (e) => {
+    if (e.key == "Enter") {
+      handleClick();
+    }
+  };
+
   const handleClick = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     try {
       const res = await axios.post(`${BASE_URL}/auth/register`, credentials);
@@ -30,7 +37,7 @@ const Register = ({ setIsModalRegister }) => {
           position: "top-center",
         });
       } else {
-        dispatch({ type: 'REGISTER_SUCCESS'})
+        dispatch({ type: "REGISTER_SUCCESS" });
         toast.success(`Register Success.`, { position: "top-center" });
         setIsModalRegister(false);
       }
@@ -38,8 +45,20 @@ const Register = ({ setIsModalRegister }) => {
       toast.warn(`All fields are required`, { position: "top-center" });
     }
   };
+
+  useEffect(()=>{
+    if(isModalRegister){
+      document.body.style.overflowY = "hidden"
+    }else{
+      document.body.style.overflowY = "scroll"
+    }
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  },[isModalRegister])
+
   return (
-    <div className="flex justify-center md:h-screen h-[700px] items-center overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-md">
+    <div className={`flex justify-center md:h-screen h-[700px] items-center overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-md -mt-6 md:mt-0`}>
       <div className="relative md:w-auto w-[300px] md:my-6 mx-auto max-w-3xl">
         <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
           <section className="rounded-md bg-black/80 p-2">
@@ -73,6 +92,7 @@ const Register = ({ setIsModalRegister }) => {
                       </label>
                       <div className="mt-2">
                         <input
+                          onKeyUp={handleKeyUp}
                           onChange={handleChange}
                           className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="text"
@@ -91,6 +111,7 @@ const Register = ({ setIsModalRegister }) => {
                       </label>
                       <div className="mt-2">
                         <input
+                          onKeyUp={handleKeyUp}
                           onChange={handleChange}
                           className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="email"
@@ -111,6 +132,7 @@ const Register = ({ setIsModalRegister }) => {
                       </div>
                       <div className="mt-2">
                         <input
+                          onKeyUp={handleKeyUp}
                           onChange={handleChange}
                           className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="password"
@@ -131,12 +153,11 @@ const Register = ({ setIsModalRegister }) => {
                   </div>
                 </form>
                 <div className="mt-3 space-y-3">
-                  <p
-                    className="text-center cursor-pointer text-red-500"
+                  <RxCross2
+                    className="flex md:hidden absolute top-4 right-4 text-center text-xl cursor-pointer text-red-500"
                     onClick={() => setIsModalRegister(false)}
-                  >
-                    Close
-                  </p>
+                  ></RxCross2>
+                  <p className="hidden md:flex items-center justify-center text-center cursor-pointer text-red-500" onClick={() => setIsModalRegister(false)}>Close</p>
                 </div>
               </div>
             </div>

@@ -55,7 +55,7 @@ const MobileNavBar = () => {
     navigate("/");
   };
   return (
-    <div className="w-full shadow-md z-50">
+    <div className="fixed top-0 bg-white w-full shadow-md z-[30]">
       <div className="mx-auto flex justify-between items-center px-4 py-2 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-2">
           <img

@@ -41,6 +41,8 @@ const AboutPage = () => {
                   <div className="flex mt-4 -mx-2">
                     <a
                       href={cat.redUrl}
+                      target="_blank" 
+                      rel="noreferrer"
                       className="mx-2 text-[#FF4500] hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white"
                       aria-label="Reddit"
                     >
@@ -56,6 +58,8 @@ const AboutPage = () => {
 
                     <a
                       href={cat.fbUrl}
+                      target="_blank" 
+                      rel="noreferrer"
                       className="mx-2 text-[#0E8EF1] hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white"
                       aria-label="Facebook"
                     >
@@ -71,6 +75,8 @@ const AboutPage = () => {
 
                     <a
                       href={cat.gitUrl}
+                      target="_blank" 
+                      rel="noreferrer"
                       className="mx-2 text-[#161B22] hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white"
                       aria-label="Github"
                     >
@@ -85,6 +91,8 @@ const AboutPage = () => {
                     </a>
                     <a
                       href={cat.lnkUrl}
+                      target="_blank" 
+                      rel="noreferrer"
                       className="mx-2 text-[#0A66C2] hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white"
                       aria-label="Linkden"
                     >

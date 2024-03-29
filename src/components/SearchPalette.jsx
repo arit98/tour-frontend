@@ -14,6 +14,12 @@ const SearchPalette = () => {
   const distanceRef = useRef(0);
   const maxGroupSizeRef = useRef(0);
 
+  const searchKeyUp = (e) => {
+    if(e.key == "Enter"){
+      searchHandler()
+    }
+  }
+
   const searchHandler = async () => {
     const location = locationRef.current.value;
     const distance = distanceRef.current.value;
@@ -64,6 +70,7 @@ const SearchPalette = () => {
           <input
             className="text-xs outline-none text-center w-full"
             placeholder="Where are you going?"
+            onKeyUp={searchKeyUp}
             ref={locationRef}
           />
         </div>
