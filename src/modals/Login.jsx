@@ -19,13 +19,8 @@ const Login = ({ isModalLogin, setIsModalLogin }) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleKeyUp = (e) => {
-    if (e.key === "Enter") {
-      handleClick();
-    }
-  };
-
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault()
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post(`${BASE_URL}/auth/login`, credentials);
@@ -96,7 +91,6 @@ const Login = ({ isModalLogin, setIsModalLogin }) => {
                       </label>
                       <div className="mt-2">
                         <input
-                          onKeyUp={handleKeyUp}
                           onChange={handleChange}
                           className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="email"
@@ -123,7 +117,6 @@ const Login = ({ isModalLogin, setIsModalLogin }) => {
                       </div>
                       <div className="mt-2">
                         <input
-                          onKeyUp={handleKeyUp}
                           onChange={handleChange}
                           className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="password"
