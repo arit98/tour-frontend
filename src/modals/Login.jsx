@@ -19,15 +19,19 @@ const Login = ({ isModalLogin, setIsModalLogin }) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
+  const handleKeyUp = (e) => {
+    if (e.key == "Enter") {
+      handleClick();
+    }
+  };
+
   const handleClick = async (e) => {
-    e.preventDefault()
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post(`${BASE_URL}/auth/login`, credentials);
       if (!res.data) {
         toast.error("Password and email don't match");
       } else {
-        console.log("after login", res.data.role);
         if (res.statusText === "OK") {
           dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
           setIsModalLogin(false);
@@ -52,7 +56,7 @@ const Login = ({ isModalLogin, setIsModalLogin }) => {
 
   return (
     <div
-      className={`flex justify-center h-screen items-center overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-md`}
+      className={`flex w-full justify-center h-screen items-center overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none backdrop-blur-md`}
     >
       <div className="relative md:w-auto w-[300px] my-6 mx-auto max-w-3xl">
         <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -91,6 +95,7 @@ const Login = ({ isModalLogin, setIsModalLogin }) => {
                       </label>
                       <div className="mt-2">
                         <input
+                        onKeyUp={handleKeyUp}
                           onChange={handleChange}
                           className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="email"
@@ -117,6 +122,7 @@ const Login = ({ isModalLogin, setIsModalLogin }) => {
                       </div>
                       <div className="mt-2">
                         <input
+                        onKeyUp={handleKeyUp}
                           onChange={handleChange}
                           className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                           type="password"
