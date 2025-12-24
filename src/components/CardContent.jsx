@@ -3,20 +3,27 @@ import { FaStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import calculateAvgRating from "../utils/avgRating";
+import { motion } from "framer-motion";
 
 const CardContent = ({ tour }) => {
   const { _id, city, reviews, title, price, featured } = tour;
 
   const { totalRating, avgRating } = calculateAvgRating(reviews);
   return (
-    <div className="md:w-[255px] w-full h-auto pb-2 rounded-md border mt-8">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.03 }}
+      transition={{ duration: 0.3 }}
+      className="md:w-[255px] w-full h-auto pb-2 rounded-md border mt-8"
+    >
       <div className="relative">
         {" "}
         <img
           draggable="false"
           src={tour.photo}
           alt="Location"
-          className="h-auto w-full rounded-md object-cover"
+          className="h-[170px] w-full rounded-md object-cover"
         />
         {featured === true ? (
           <p className="absolute bottom-0 right-0 w-max h-max z-10 bg-[#212121] p-2 text-xs rounded-sm text-white bg-opacity-80 cursor-default">
@@ -54,7 +61,7 @@ const CardContent = ({ tour }) => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
